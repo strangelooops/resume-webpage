@@ -25,4 +25,4 @@ jobs:
 
       - name: Sync Files to S3
         run: |
-          aws s3 sync . s3://${{ vars.S3_BUCKET_NAME }} --delete --exclude ".git/*" --exclude ".github/*"
+          aws s3 sync . s3://${{ vars.S3_ANTHONY_RESUME }} --delete --exclude ".git/*" --exclude ".github/*"
