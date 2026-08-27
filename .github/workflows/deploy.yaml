@@ -15,18 +15,21 @@ jobs:
 
     steps:
       # ERROR 1 FIXED: Added the checkout step to pull your files
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
       # ERROR 2 FIXED: Removed the empty duplicate AWS step
       - name: Configure AWS Credentials via OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
           aws-region: ${{ vars.AWS_REGION }}
           role-session-name: GitHubActionsSession
           audience: sts.amazonaws.com
 
       - name: Sync Files to S3
         run: |
-          aws s3 sync . s3://${{ vars.S3_ANTHONY_RESUME }} --delete --exclude ".git/*" --exclude ".github/*"
+          aws s3 sync . s3://${{ vars.S3_ANTHONY_RESUME }}\
+          --delete\
+          --exclude ".git/*"\
+          --exclude ".github/*" 
