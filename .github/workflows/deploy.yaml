@@ -14,24 +14,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Configure AWS Credentials (OIDC)
+      # Amazon Q Diagnostic Step: Decodes the exact OIDC payload
+      - name: Print OIDC Token Claims
+        run: |
+          TOKEN=$(curl -s -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+          "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com")
+          echo "$TOKEN" | cut -d'.' -f2 | base64 -d 2>/dev/null | python3 -m json.tool
+
+      - name: Configure AWS Credentials via OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::008971644409:role/github-actions-resume-webpage-deploy
           aws-region: us-west-1
+          audience: sts.amazonaws.com
 
       - name: Sync Files to S3
         run: |
           aws s3 sync . s3://anthony-resume-008971644409-us-west-1-an \
-          --delete \
-          --exclude ".git/*" \
-          --exclude ".github/*" 
-      
-      - name: Print OIDC Token Claims
-        run: |
-        TOKEN=$(curl -s -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
-        "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com")
-        echo $TOKEN | cut -d'.' -f2 | base64 -d 2>/dev/null | python3 -m json.tool
