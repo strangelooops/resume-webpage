@@ -9,6 +9,22 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+header {
+    text-align: left;
+    margin-bottom: 24px;
+}
+
+header h1 {
+    font-size: 28px;
+    color: #0f172a;
+    margin-bottom: 6pt;
+}
+
+.contact-info {
+    font-size: 14px;
+    color: #4b5563
+}
+
 body {
   background-color: #f1f5f9;
   font-family: Arial, sans-serif;
