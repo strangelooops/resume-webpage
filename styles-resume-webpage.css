@@ -1,7 +1,7 @@
 /*Global Styles*/
 
 .container {
-    max width: 800px;
+    max-width: 800px;
     margin: 40px auto;
     padding: 32px;
     background: #ffffff;
@@ -12,34 +12,58 @@
 body {
   background-color: #f1f5f9;
   font-family: Arial, sans-serif;
+  color: #333333;
+  line-height: 1.6;
   margin: 0;
   padding: 0 16px;
 }
 
-.h1 {
-    font-size: 22px;
-
+h1 {
+    font-size: 28px;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #0f172a;
 }
 
-.h2 {
+h2 {
     font-size: 18px;
+    border-bottom: 2px solid #e2e8f0;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    color: #1e40af;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.h3 {
-    font-size: 14px;
+h3 {
+    font-size: 15px;
+    margin-bottom: 4px;
+    color: #1e293b
 }
 
-.p {
-
+p {
+    margin-top: 0;
+    margin-bottom: 12px;
 }
 
-.ul {
+ul {
     text-align: left;
     list-style-type: disc;
     padding-left: 20px;
-    margin: 10px 0;
+    margin: 8px 0 16px 0;
 }
 
-.li {
+li {
     margin-bottom: 6px;
+}
+
+a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
